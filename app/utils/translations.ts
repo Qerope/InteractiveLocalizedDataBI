@@ -1,17 +1,17 @@
 export const translations = {
   en: {
-    // Header & Navigation
+   
     dashboardTitle: "Aviation Safety Dashboard",
     designInfo: "Design Info",
     backToDashboard: "Back to Dashboard",
     loading: "Loading data...",
 
-    // Mode Toggle
+   
     analysisMode: "Analysis Mode",
     comparisonMode: "Comparison Mode",
     singleMode: "Single Analysis Mode",
 
-    // Filters
+   
     step1ChooseType: "Step 1: Choose Analysis Type",
     step2ChooseValues: "Step 2: Select Values to Compare",
     selectFilter: "Select Filter Value",
@@ -19,25 +19,25 @@ export const translations = {
     showAll: "Show All Data",
     allData: "All Data",
 
-    // Filter Types
+   
     timeRange: "Time Range",
     operator: "Operator",
     damageType: "Damage Type",
     aircraftType: "Aircraft Type",
 
-    // Damage Types (User-friendly)
+   
     substantialDamage: "Substantial Damage",
     totalLoss: "Write-Off (Total Loss)",
     minorDamage: "No Damage / Minor",
 
-    // Statistics
+   
     totalCrashes: "Total Crashes",
     totalFatalities: "Total Fatalities",
     avgFatalities: "Avg. Fatalities per Crash",
     fatalCrashes: "Fatal Crashes",
     year: "Year",
 
-    // Charts
+   
     crashes: "Crashes",
     percentage: "Percentage",
     showItem: "Show",
@@ -52,17 +52,18 @@ export const translations = {
     pieChartDescription:
       "Interactive pie chart displaying the distribution of crash severities. Hover over segments for detailed percentages.",
 
-    // Data Source
+   
     dataSource: "Data Source",
     dataSourceText:
       "Aviation crash data from CSV file based on Kaggle dataset, processed and filtered for interactive visualization purposes.",
 
-    // Design Info Page
+   
     designer: "Designer Information",
     name: "Name",
     studentId: "Student ID",
     portfolio: "Portfolio",
     githubRepo: "GitHub Repository",
+    linkto: "Link to Demo",
 
     dashboardGoalData: "Dashboard Goal & Data",
     domain: "Domain",
@@ -131,18 +132,18 @@ export const translations = {
       "Used ChatGPT for advanced code debugging, chart enhancement patterns, and text content in this report and throughout the app.",
   },
   ru: {
-    // Header & Navigation
+   
     dashboardTitle: "Панель Безопасности Авиации",
     designInfo: "Информация о Дизайне",
     backToDashboard: "Вернуться к Панели",
     loading: "Загрузка данных...",
 
-    // Mode Toggle
+   
     analysisMode: "Режим Анализа",
     comparisonMode: "Режим Сравнения",
     singleMode: "Режим Одиночного Анализа",
 
-    // Filters
+   
     step1ChooseType: "Шаг 1: Выберите Тип Анализа",
     step2ChooseValues: "Шаг 2: Выберите Значения для Сравнения",
     selectFilter: "Выберите Значение Фильтра",
@@ -150,25 +151,25 @@ export const translations = {
     showAll: "Показать Все Данные",
     allData: "Все Данные",
 
-    // Filter Types
+   
     timeRange: "Временной Диапазон",
     operator: "Оператор",
     damageType: "Тип Повреждения",
     aircraftType: "Тип Самолета",
 
-    // Damage Types (User-friendly)
+   
     substantialDamage: "Существенные Повреждения",
     totalLoss: "Списание (Полная Потеря)",
     minorDamage: "Без Повреждений / Незначительные",
 
-    // Statistics
+   
     totalCrashes: "Всего Катастроф",
     totalFatalities: "Всего Жертв",
     avgFatalities: "Среднее Жертв на Катастрофу",
     fatalCrashes: "Смертельные Катастрофы",
     year: "Год",
 
-    // Charts
+   
     crashes: "Катастрофы",
     percentage: "Процент",
     showItem: "Показать",
@@ -182,7 +183,7 @@ export const translations = {
     pieChartDescription: "Интерактивная круговая диаграмма, показывающая распределение по степени тяжести аварий. Наведите курсор на сегменты для подробной информации в процентах.",
 
 
-    // Data Source
+   
     dataSource: "Источник Данных",
     dataSourceText:
       "Данные об авиационных катастрофах из CSV файла на основе набора данных Kaggle, обработанные и отфильтрованные для целей интерактивной визуализации.",
@@ -192,6 +193,7 @@ export const translations = {
     studentId: "ID Студента",
     portfolio: "Портфолио",
     githubRepo: "GitHub Репозиторий",
+    linkto: "Ссылка на демо",
 
     dashboardGoalData: "Цель Панели и Данные",
     domain: "Область",

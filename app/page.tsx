@@ -39,21 +39,21 @@ export default function Dashboard() {
   const [aviationData, setAviationData] = useState<CrashData[]>([])
   const [loading, setLoading] = useState(true)
 
-  // Comparison mode toggle
+ 
   const [comparisonMode, setComparisonMode] = useState(false)
 
-  // Comparison filter states
+ 
   const [comparisonType, setComparisonType] = useState<ComparisonType>("timeRange")
   const [comparison1, setComparison1] = useState<string>("")
   const [comparison2, setComparison2] = useState<string>("")
 
-  // Single mode filter states
+ 
   const [singleFilter, setSingleFilter] = useState<string>("all")
 
-  // Chart visibility states
+ 
   const [hiddenDataKeys, setHiddenDataKeys] = useState<Set<string>>(new Set())
 
-  // Damage type mapping
+ 
   const getDamageTypeLabel = (dmg: string) => {
     const mapping: { [key: string]: string } = {
       sub: t.substantialDamage,
@@ -63,7 +63,7 @@ export default function Dashboard() {
     return mapping[dmg] || dmg
   }
 
-  // Load CSV data
+ 
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -86,10 +86,10 @@ export default function Dashboard() {
 
         setAviationData(data)
 
-        // Set default single filter
+       
         setSingleFilter("all")
 
-        // Set default comparisons
+       
         const operators = [...new Set(data.map((item) => item.operator))].sort()
         if (operators.length >= 2) {
           setComparison1(operators[0])
@@ -105,7 +105,7 @@ export default function Dashboard() {
     loadData()
   }, [])
 
-  // Get comparison options based on type
+ 
   const getComparisonOptions = (type: ComparisonType) => {
     switch (type) {
       case "operator":
@@ -121,13 +121,13 @@ export default function Dashboard() {
     }
   }
 
-  // Get available options for single mode
+ 
   const getSingleOptions = () => {
     const options = ["all", ...getComparisonOptions(comparisonType)]
     return options
   }
 
-  // Filter data based on comparison type and value
+ 
   const filterDataByComparison = (comparisonValue: string) => {
     if (comparisonValue === "all") return aviationData
 
@@ -149,10 +149,10 @@ export default function Dashboard() {
     }
   }
 
-  // Process data for charts
+ 
   const { lineChartData, barChartData, stats1, stats2, singleStats } = useMemo(() => {
     if (comparisonMode) {
-      // Comparison mode logic
+     
       if (!comparison1 || !comparison2) {
         return { lineChartData: [], barChartData: [], stats1: null, stats2: null, singleStats: null, pieChartData: [] }
       }
@@ -160,7 +160,7 @@ export default function Dashboard() {
       const data1 = filterDataByComparison(comparison1)
       const data2 = filterDataByComparison(comparison2)
 
-      // Process line chart data for comparison
+     
       const yearData1: { [key: string]: { crashes: number; fatalities: number } } = {}
       const yearData2: { [key: string]: { crashes: number; fatalities: number } } = {}
 
@@ -187,29 +187,29 @@ export default function Dashboard() {
         [`${t.fatalities} (${comparison2})`]: yearData2[year]?.fatalities || 0,
       }))
 
-      // Process bar chart data for comparison
-      // const typeData1: { [key: string]: number } = {}
-      // const typeData2: { [key: string]: number } = {}
+     
+     
+     
 
-      // data1.forEach((item) => {
-      //   typeData1[item.type] = (typeData1[item.type] || 0) + 1
-      // })
+     
+     
+     
 
-      // data2.forEach((item) => {
-      //   typeData2[item.type] = (typeData2[item.type] || 0) + 1
-      // })
+     
+     
+     
 
-      // const allTypes = [...new Set([...Object.keys(typeData1), ...Object.keys(typeData2)])]
-      // const barData = allTypes
-      //   .map((type) => ({
-      //     type: type.length > 25 ? type.substring(0, 25) + "..." : type,
-      //     fullType: type,
-      //     [`${comparison1}`]: typeData1[type] || 0,
-      //     [`${comparison2}`]: typeData2[type] || 0,
-      //     total: (typeData1[type] || 0) + (typeData2[type] || 0),
-      //   }))
-      //   .sort((a, b) => b.total - a.total)
-      //   .slice(0, 15)
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
       const calculateStats = (data: CrashData[]) => ({
         totalCrashes: data.length,
@@ -227,10 +227,10 @@ export default function Dashboard() {
         pieChartData: [],
       }
     } else {
-      // Single mode logic
+     
       const filteredData = filterDataByComparison(singleFilter)
 
-      // Process line chart data for single mode
+     
       const yearData: { [key: string]: { crashes: number; fatalities: number } } = {}
 
       filteredData.forEach((item) => {
@@ -248,27 +248,27 @@ export default function Dashboard() {
         }))
         .sort((a, b) => Number.parseInt(a.year) - Number.parseInt(b.year))
 
-      // Process bar chart data for single mode
-      // const typeData: { [key: string]: { crashes: number; fatalities: number } } = {}
+     
+     
 
-      // filteredData.forEach((item) => {
-      //   if (!typeData[item.type]) {
-      //     typeData[item.type] = { crashes: 0, fatalities: 0 }
-      //   }
-      //   typeData[item.type].crashes += 1
-      //   typeData[item.type].fatalities += item.fat
-      // })
+     
+     
+     
+     
+     
+     
+     
 
-      // const barData = Object.entries(typeData)
-      //   .map(([type, data]) => ({
-      //     type: type.length > 25 ? type.substring(0, 25) + "..." : type,
-      //     fullType: type,
-      //     [t.crashes]: data.crashes,
-      //     [t.fatalities]: data.fatalities,
-      //     total: data.crashes,
-      //   }))
-      //   .sort((a, b) => b.total - a.total)
-      //   .slice(0, 15)
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
       const calculateSingleStats = (data: CrashData[]) => ({
         totalCrashes: data.length,
@@ -288,7 +288,7 @@ export default function Dashboard() {
     }
   }, [aviationData, comparison1, comparison2, comparisonType, singleFilter, comparisonMode, t])
 
-  // Process pie chart data
+ 
   const pieChartData = useMemo(() => {
     const data = comparisonMode
       ? comparison1 && comparison2
@@ -326,7 +326,7 @@ export default function Dashboard() {
     ].filter((item) => item.value > 0)
   }, [aviationData, comparison1, comparison2, comparisonType, singleFilter, comparisonMode, t])
 
-  // Update comparison options when type changes
+ 
   useEffect(() => {
     const options = getComparisonOptions(comparisonType)
     if (comparisonMode && options.length >= 2) {
@@ -338,13 +338,13 @@ export default function Dashboard() {
     }
   }, [comparisonType, aviationData, comparisonMode])
 
-  // Prevent same selections in comparison mode
+ 
   const getAvailableOptions2 = () => {
     const allOptions = getComparisonOptions(comparisonType)
     return allOptions.filter((option) => option !== comparison1)
   }
 
-  // Toggle data key visibility
+ 
   const toggleDataKeyVisibility = (dataKey: string) => {
     const newHiddenKeys = new Set(hiddenDataKeys)
     if (newHiddenKeys.has(dataKey)) {
@@ -355,7 +355,7 @@ export default function Dashboard() {
     setHiddenDataKeys(newHiddenKeys)
   }
 
-  // Enhanced tooltip components
+ 
   const CustomLineTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
@@ -485,7 +485,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
+      
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -508,7 +508,7 @@ export default function Dashboard() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        {/* Filters */}
+        
         <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 mb-6 sm:mb-8"><div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-gray-900 flex items-center">
             <Filter className="h-5 w-5 mr-2 text-blue-600" />
@@ -538,7 +538,7 @@ export default function Dashboard() {
 
           {comparisonMode ? (
             <>
-              {/* Step 1: Choose Comparison Type */}
+              
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">{t.step1ChooseType}</label>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -600,7 +600,7 @@ export default function Dashboard() {
             </>
           ) : (
             <>
-              {/* Single Mode Filters */}
+              
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">{t.step1ChooseType}</label>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -643,10 +643,10 @@ export default function Dashboard() {
             </>
           )}
         </div>
-        {/* Statistics */}
+        
         {comparisonMode && stats1 && stats2 ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 sm:mb-8">
-            {/* Stats for Comparison A */}
+            
             <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 border-l-4 border-blue-500">
               <h4 className="text-lg font-semibold text-blue-800 mb-4 flex items-center">
                 <div className="w-4 h-4 bg-blue-500 rounded-full mr-2" />
@@ -668,7 +668,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Stats for Comparison B */}
+            
             <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-lg p-6 border-l-4 border-red-500">
               <h4 className="text-lg font-semibold text-red-800 mb-4 flex items-center">
                 <div className="w-4 h-4 bg-red-500 rounded-full mr-2" />
@@ -727,7 +727,7 @@ export default function Dashboard() {
             </div>
           )
         )}
-        {/* Charts */}
+        
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8">
           <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 hover:shadow-md transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">{t.crashesByYear}</h3>
@@ -856,7 +856,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Data Source */}
+        
         <div className="mt-6 sm:mt-8 bg-gray-50 rounded-lg p-4">
           <p className="text-sm text-gray-600">
             <strong>{t.dataSource}:</strong> {t.dataSourceText}

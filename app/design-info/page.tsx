@@ -39,6 +39,17 @@ export default function DesignInfo() {
               <strong>{t.studentId}:</strong> 300321356
             </p>
             <p>
+              <strong>{t.linkto}:</strong>{" "}
+              <a
+                href="https://interactive-localized-data-bi.vercel.app/"
+                className="text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://interactive-localized-data-bi.vercel.app/
+              </a>
+            </p>
+            <p>
               <strong>{t.portfolio}:</strong>{" "}
               <a
                 href="https://qerope.github.io/SEG3525-Assignments/Devoir1/"
